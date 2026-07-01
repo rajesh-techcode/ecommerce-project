@@ -15,7 +15,6 @@ function ShopContent() {
   const [loading, setLoading] = useState(true);
   const { addToCart } = useCart();
   const { addToast } = useToast();
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState("");
 
   const searchParams = useSearchParams();
@@ -39,23 +38,13 @@ function ShopContent() {
     loadProducts();
   }, []);
 
-  const categories = ["All", "Electronics", "Clothing", "Home & Garden", "Beauty & Health"];
-
-  const categoryImages: Record<string, string> = {
-    Electronics: "/images/electronics.svg",
-    Clothing: "/images/clothing.svg",
-    "Home & Garden": "/images/home.svg",
-    "Beauty & Health": "/images/beauty.svg",
-  };
-
   const filteredProducts = products.filter((p) => {
-    const matchesCategory = selectedCategory === "All" || p.category === selectedCategory;
     const query = searchQuery.toLowerCase().trim();
     const matchesSearch =
       !query ||
       p.name.toLowerCase().includes(query) ||
       (p.description && p.description.toLowerCase().includes(query));
-    return matchesCategory && matchesSearch;
+    return matchesSearch;
   });
 
   if (loading) {
@@ -93,43 +82,17 @@ function ShopContent() {
           </div>
         </div>
 
-        {/* Shop by Category */}
-        <div className="mt-6">
-          <h3 className="text-sm font-semibold text-gray-600">Shop by category</h3>
-          <div className="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {categories.filter((c) => c !== "All").map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`flex flex-col items-center gap-2 p-3 rounded-lg border transition-colors hover:shadow-md ${selectedCategory === cat ? 'bg-white shadow-sm' : 'bg-gray-50'}`}
-              >
-                <div className="w-20 h-20 rounded-md overflow-hidden bg-white flex items-center justify-center">
-                  <Image src={categoryImages[cat]} alt={cat} width={80} height={80} className="object-contain" />
-                </div>
-                <div className="text-sm font-medium text-gray-700">{cat}</div>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Category Filter */}
-        <div className="flex items-center gap-2">
-          <Filter className="h-5 w-5 text-gray-400 flex-shrink-0" />
-          <div className="flex bg-gray-100 rounded-lg p-1 overflow-x-auto max-w-[90vw] md:max-w-none no-scrollbar">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`flex-none px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-                  selectedCategory === cat
-                    ? "bg-white text-gray-900 shadow-sm"
-                    : "text-gray-500 hover:text-gray-900"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
+        {/* Search Input */}
+        <div className="relative w-full md:max-w-xs">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
+          <input
+            type="text"
+            id="shop-search"
+            placeholder="Search products..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg bg-white text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+          />
         </div>
       </div>
 

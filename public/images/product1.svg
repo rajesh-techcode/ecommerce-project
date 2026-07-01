@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <rect width="600" height="600" rx="24" fill="#fff7ed" />
+  <rect x="80" y="80" width="440" height="280" rx="12" fill="#ffedd5" />
+  <rect x="120" y="380" width="360" height="120" rx="12" fill="#fff1e6" />
+  <text x="60" y="560" font-family="Arial" font-size="20" fill="#92400e">Product 1 — placeholder</text>
+</svg>

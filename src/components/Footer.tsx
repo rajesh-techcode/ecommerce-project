@@ -77,10 +77,10 @@ export default function Footer() {
                 <h3 className="text-sm font-semibold leading-6 text-gray-900">Company</h3>
                 <ul role="list" className="mt-6 space-y-4">
                   <li>
-                    <Link href="/about" className="text-sm leading-6 text-gray-600 hover:text-indigo-600 transition-colors">About Us</Link>
+                    <Link href="/blog" className="text-sm leading-6 text-gray-600 hover:text-indigo-600 transition-colors">Blog</Link>
                   </li>
                   <li>
-                    <Link href="/blog" className="text-sm leading-6 text-gray-600 hover:text-indigo-600 transition-colors">Blog</Link>
+                    <Link href="/careers" className="text-sm leading-6 text-gray-600 hover:text-indigo-600 transition-colors">Careers</Link>
                   </li>
                   <li>
                     <Link href="/careers" className="text-sm leading-6 text-gray-600 hover:text-indigo-600 transition-colors">Careers</Link>

@@ -135,13 +135,6 @@ function ShopContent() {
                     {product.category || "New"}
                   </span>
                 </div>
-                {product.isOriginal && (
-                  <div className="absolute top-3 right-3">
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 shadow-sm">
-                      Original
-                    </span>
-                  </div>
-                )}
               </Link>
               
               <div className="flex-1 p-5 flex flex-col justify-between">
